@@ -1,29 +1,58 @@
-# my-project
+## 配置
+### pxtrem配置
++ 安装依赖
+```shell
+    npm install lib-flexible –-save
+    npm install postocss-pxtorem -dev
+```
++ 添加meta
+```html
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
 ```
 
-### Run your tests
++ 引入文件
+
 ```
-npm run test
+    main.js  import 'lib-flexible'
 ```
 
-### Lints and fixes files
-```
-npm run lint
++ 配置postcss-pxtorem
+```shell
+   
+    postcss
+    module.exports = {
+  plugins: {
+    autoprefixer: {},
+    "postcss-pxtorem": {
+      "rootValue": 75, // 设计稿宽度的1/10,（JSON文件中不加注释，此行注释及下行注释均删除）
+      "propList":["*"] // 需要做转化处理的属性，如`hight`、`width`、`margin`等，`*`表示全部
+   }
+  }
+}
+
+
+
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 配置别名
+
+```shell
+  const path = require('path');
+  function resolve (dir) {
+      return path.join(__dirname, dir)
+  }
+  console.log('vue.config.js ============>')
+  module.exports = {
+    chainWebpack: (config)=>{
+      config.resolve.alias
+          .set('@assets',resolve('src/assets'))
+          .set('@components',resolve('src/components'))
+          .set('@static',resolve('src/static'))
+    }
+  }
+
+```
+
+
+

@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <keep-alive>
+       <router-view class="router-view"></router-view>
+    </keep-alive>
+   
+    <foot-bar v-show="$route.meta.footShow"></foot-bar>
   </div>
 </template>
-
+<script>
+import FootBar from '@components/FootBar.vue'
+export default {
+  components:{
+    FootBar
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -25,5 +32,8 @@
       color: #42b983;
     }
   }
+}
+.router-view{
+  margin-bottom: 100px;
 }
 </style>
